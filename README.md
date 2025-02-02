@@ -21,6 +21,7 @@ This repository contains various examples demonstrating the usage of DSPy, a fra
 uv venv --python 3.10
 source .venv/bin/activate
 uv pip install -U dspy
+uv pip install requests
 ```
 
 2. Configure Ollama:
