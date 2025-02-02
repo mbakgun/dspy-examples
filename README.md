@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
 All examples include execution time measurement. In our test run:
 - Mac mini M4 Pro: 12-core CPU, 20-core GPU, 64GB unified memory
-- Total execution time: ~18.5 seconds (18486.20ms)
+- Total execution time: ~27.5 seconds (Total time taken: 27593.65ms)
 - Each example runs sequentially
 - Performance may vary based on model and system configuration
 
@@ -234,7 +234,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 
-- Total execution time: ~14.5 seconds (14574.00ms)
+# Total execution time: ~25.6 seconds (25618.63ms)
 ```
 
 ### Ollama Configuration
