@@ -37,7 +37,7 @@ uv pip install requests
 Question: "Three dice are tossed. What is the probability that the sum equals 3?"
 Answer: 0.00462963
 ```
-Implementation ([`getFloatAnswerExample`](basic_dspy_example.py#L17-L22))
+Implementation ([`getFloatAnswerExample`](basic_dspy_example.py#L20-L25))
 - Uses `ChainOfThought` for mathematical reasoning
 - Returns floating-point probability value
 - Simple one-step calculation with direct output
@@ -51,7 +51,7 @@ Question: "Turkey is a country in which continent?"
 Answer: "Europe"
 Reasoning: "The continent that Turkey is located on can be determined by considering its geographical position."
 ```
-Implementation ([`GetBasicAnswer`](basic_dspy_example.py#L25-L38))
+Implementation ([`GetBasicAnswer`](basic_dspy_example.py#L28-L41))
 - Uses `dspy.Signature` to define input/output structure
 - Provides factoid answers with reasoning
 - Demonstrates basic question-answering pattern
@@ -64,7 +64,7 @@ Implementation ([`GetBasicAnswer`](basic_dspy_example.py#L25-L38))
 Question: "What is the github repo of the Mj API?"
 Answer: "The GitHub repository of the Mj API is https://s.akgns.com/3Aw"
 ```
-Implementation ([`ragExampleWithMjApi`](basic_dspy_example.py#L41-L47))
+Implementation ([`ragExampleWithMjApi`](basic_dspy_example.py#L44-L50))
 - Fetches data from mj.akgns.com
 - Uses RAG (Retrieval Augmented Generation)
 - Processes external API response as context
@@ -78,7 +78,7 @@ Page Size: 20
 Interval Minutes: 60
 Total Images: 400
 ```
-Implementation ([`RagWithDataExtractionExample`](basic_dspy_example.py#L50-L65))
+Implementation ([`RagWithDataExtractionExample`](basic_dspy_example.py#L53-L68))
 - Extracts structured data from API response
 - Defines specific output fields with types
 - Uses `dspy.Signature` for schema definition
@@ -91,7 +91,7 @@ Implementation ([`RagWithDataExtractionExample`](basic_dspy_example.py#L50-L65))
 Interval in minutes: 60
 Interval in seconds: 3600
 ```
-Implementation ([`reActWithRag`](basic_dspy_example.py#L68-L85))
+Implementation ([`reActWithRag`](basic_dspy_example.py#L71-L88))
 - Uses ReAct pattern with custom math tool
 - Combines API data with calculation
 - Demonstrates tool integration
@@ -104,7 +104,7 @@ Implementation ([`reActWithRag`](basic_dspy_example.py#L68-L85))
 Word: "strawberry"
 Letter 'r' count: 3
 ```
-Implementation ([`countLetterInWord`](basic_dspy_example.py#L88-L113))
+Implementation ([`countLetterInWord`](basic_dspy_example.py#L91-L116))
 - Custom tool for letter counting
 - Uses ReAct for simple text analysis
 - Shows basic tool usage pattern
