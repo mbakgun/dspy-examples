@@ -93,6 +93,56 @@ Implementation ([`countLetterInWord`](basic_dspy_example.py#L88-L113))
 - Uses ReAct for simple text analysis
 - Shows basic tool usage pattern
 
+### 7. Text Summarization
+```
+Input: Long text about DSPy framework
+Output: Concise summary of DSPy's key features
+```
+Implementation ([`summarizeTextExample`](basic_dspy_example.py#L116-L133))
+- Uses `ChainOfThought` for text summarization
+- Processes multi-sentence input text
+- Generates concise, coherent summaries
+
+### 8. Text Translation
+```
+Input: "Hello, world! DSPy is a great tool for building AI applications."
+Output: Merhaba dünya! DSPy, yapay zeka uygulamaları geliştirmek için harika bir araçtır.
+```
+Implementation ([`translateTextExample`](basic_dspy_example.py#L136-L144))
+- Translates text to specified target language
+- Uses `ChainOfThought` for accurate translation
+- Maintains context and meaning
+
+### 9. Basic Prediction
+```
+Question: "What is the capital of Germany?"
+Answer: "Berlin"
+```
+Implementation ([`basicPredictExample`](basic_dspy_example.py#L147-L151))
+- Simple question-answering using `dspy.Predict`
+- Direct prediction without complex reasoning
+- Demonstrates basic model usage
+
+### 10. Multiple Choice Questions
+```
+Question: "Which planet is known as the Red Planet?"
+Options: A) Venus, B) Mars, C) Jupiter, D) Saturn
+```
+Implementation ([`multipleChoiceExample`](basic_dspy_example.py#L154-L176))
+- Custom `MultipleChoice` signature
+- Uses `dspy.MultiChainComparison` and `dspy.Predict` for robust answers
+- Provides reasoning for selected answer
+
+### 11. Parallel Processing
+```
+Input: Multiple text snippets
+Output: Category for each text
+```
+Implementation ([`parallelProcessingExample`](basic_dspy_example.py#L179-L194))
+- Processes multiple inputs in parallel
+- Uses `dspy.Parallel` for efficient execution
+- Demonstrates batch processing capabilities
+
 ## DSPy Components Used
 
 ### ChainOfThought
@@ -109,6 +159,21 @@ Implementation ([`countLetterInWord`](basic_dspy_example.py#L88-L113))
 - Defines input/output schemas
 - Enables structured data handling
 - Supports type hints and documentation
+
+### Predict
+- Simple prediction interface
+- Direct question-answering
+- Minimal configuration needed
+
+### MultiChainComparison
+- Compares multiple reasoning attempts
+- Aggregates different model outputs
+- Provides robust final answers
+
+### Parallel
+- Enables concurrent processing
+- Configurable thread count
+- Error handling and progress tracking
 
 ## Running Examples
 
@@ -153,7 +218,12 @@ async def main():
         run_example(ragExampleWithMjApi),
         run_example(RagWithDataExtractionExample),
         run_example(reActWithRag),
-        run_example(countLetterInWord)
+        run_example(countLetterInWord),
+        run_example(summarizeTextExample),
+        run_example(translateTextExample),
+        run_example(basicPredictExample),
+        run_example(multipleChoiceExample),
+        run_example(parallelProcessingExample)
     ]
     
     await asyncio.gather(*tasks)
@@ -178,7 +248,6 @@ Or add to your system configuration:
 <key>OLLAMA_NUM_PARALLEL</key>
 <string>8</string>
 ```
-
 This allows Ollama to handle multiple requests simultaneously, significantly improving performance when running examples in parallel.
 
 DSPy provides built-in observability features for debugging and monitoring your AI systems. 

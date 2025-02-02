@@ -9,7 +9,10 @@ import dspy
 
 model_name = "llama3.2:3b"
 lm = dspy.LM(
-    "ollama_chat/" + model_name, api_base="http://localhost:11434", api_key="", cache=False
+    "ollama_chat/" + model_name,
+    api_base="http://localhost:11434",
+    api_key="",
+    cache=False,
 )
 dspy.configure(lm=lm)
 
@@ -113,6 +116,85 @@ def countLetterInWord():
     return result.answer
 
 
+def summarizeTextExample():
+    summ_model = dspy.ChainOfThought("text -> summary")
+    sample_text = (
+        "DSPy is a framework that simplifies the process of constructing machine learning problems "
+        "that are based on chains of thought and require fewer steps because of its structure. "
+        "The incorporation of specialist tools into language models is another feature of this system. "
+        "The creation of applications, including those using artificial intelligence, can benefit greatly "
+        "from the utilization of this instrument. "
+        "It provides a declarative approach to building LLM applications through Python code rather than prompts. "
+        "The framework enables optimization of prompts and chains automatically while maintaining reproducibility. "
+        "Integration with external tools and retrieval systems is seamless, making it ideal for production deployments."
+    )
+    result = summ_model(text=sample_text)
+    print(f"Original text: {sample_text}")
+    print(f"Summary: {result.summary}")
+
+
+def translateTextExample():
+    trans_model = dspy.ChainOfThought("text, target_language -> translation")
+    text_to_translate = (
+        "Hello, world! DSPy is a great tool for building AI applications."
+    )
+    target_language = "Turkish"
+    result = trans_model(text=text_to_translate, target_language=target_language)
+    print(f"Original text: {text_to_translate}")
+    print(f"Translation ({target_language}): {result.translation}")
+
+
+def basicPredictExample():
+    predictor = dspy.Predict("question -> answer")
+    result = predictor(question="What is the capital of Germany?")
+    print(f"Question: What is the capital of Germany?")
+    print(f"Answer: {result.answer}")
+
+
+def multipleChoiceExample():
+    class MultipleChoice(dspy.Signature):
+        """Answer multiple choice questions by comparing options."""
+
+        question = dspy.InputField()
+        options = dspy.InputField()
+        answer = dspy.OutputField(desc="The best answer choice (A, B, C, or D)")
+        reasoning = dspy.OutputField(desc="Explanation for the answer")
+
+    predictor = dspy.Predict(MultipleChoice)
+
+    mc_solver = dspy.MultiChainComparison(MultipleChoice, M=3)
+
+    question = "Which planet is known as the Red Planet?"
+    options = {"A": "Venus", "B": "Mars", "C": "Jupiter", "D": "Saturn"}
+
+    completions = [predictor(question=question, options=options) for _ in range(3)]
+
+    result = mc_solver(completions=completions, question=question, options=options)
+
+    print(f"Question: {question}")
+    print(f"Options: {options}")
+    print(f"Selected Answer: {result.answer}")
+    print(f"Reasoning: {result.rationale}")
+
+
+def parallelProcessingExample():
+    predictor = dspy.Predict("text -> category")
+    parallel_processor = dspy.Parallel()
+
+    texts = [
+        "The stock market saw significant gains today",
+        "Scientists discover new species in Amazon rainforest",
+        "New smartphone model released with advanced features",
+    ]
+
+    exec_pairs = [(predictor, {"text": text}) for text in texts]
+    results = parallel_processor(exec_pairs)
+
+    for text, result in zip(texts, results):
+        print(f"\nText: {text}")
+        print(f"Category: {result.category}")
+
+
 if __name__ == "__main__":
     start_time = time.time()
     # getFloatAnswerExample()
@@ -121,6 +203,11 @@ if __name__ == "__main__":
     # RagWithDataExtractionExample()
     # reActWithRag()
     # countLetterInWord()
+    # summarizeTextExample()
+    # translateTextExample()
+    # basicPredictExample()
+    # multipleChoiceExample()
+    # parallelProcessingExample()
 
     elapsed_ms = (time.time() - start_time) * 1000
     print(f"\nTotal time taken: {elapsed_ms:.2f}ms")
