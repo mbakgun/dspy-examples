@@ -128,6 +128,7 @@ if __name__ == "__main__":
 ## Performance Notes
 
 All examples include execution time measurement. In our test run:
+- Mac mini M4 Pro: 12-core CPU, 20-core GPU, 64GB unified memory
 - Total execution time: ~18.5 seconds (18486.20ms)
 - Each example runs sequentially
 - Performance may vary based on model and system configuration
