@@ -10,7 +10,6 @@
 
 The framework enables developers to write declarative programs that can be optimized and improved through teleprompter learning, making it easier to create robust AI applications.
 
-
 This repository contains various examples demonstrating the usage of DSPy, a framework for programming with language models. Each example showcases different capabilities and patterns.
 
 ## Setup
@@ -31,7 +30,9 @@ uv pip install requests
 
 ## Examples
 
-### 1. Probability Calculation
+<details>
+<summary><strong>1. Probability Calculation: getFloatAnswerExample</strong></summary>
+
 ```
 Question: "Three dice are tossed. What is the probability that the sum equals 3?"
 Answer: 0.00462963
@@ -40,8 +41,11 @@ Implementation ([`getFloatAnswerExample`](basic_dspy_example.py#L17-L22))
 - Uses `ChainOfThought` for mathematical reasoning
 - Returns floating-point probability value
 - Simple one-step calculation with direct output
+</details>
 
-### 2. Basic Question Answering
+<details>
+<summary><strong>2. Basic Question Answering: GetBasicAnswer</strong></summary>
+
 ```
 Question: "Turkey is a country in which continent?"
 Answer: "Europe"
@@ -51,8 +55,11 @@ Implementation ([`GetBasicAnswer`](basic_dspy_example.py#L25-L38))
 - Uses `dspy.Signature` to define input/output structure
 - Provides factoid answers with reasoning
 - Demonstrates basic question-answering pattern
+</details>
 
-### 3. External API Integration
+<details>
+<summary><strong>3. External API Integration: ragExampleWithMjApi</strong></summary>
+
 ```
 Question: "What is the github repo of the Mj API?"
 Answer: "The GitHub repository of the Mj API is https://s.akgns.com/3Aw"
@@ -61,8 +68,11 @@ Implementation ([`ragExampleWithMjApi`](basic_dspy_example.py#L41-L47))
 - Fetches data from mj.akgns.com
 - Uses RAG (Retrieval Augmented Generation)
 - Processes external API response as context
+</details>
 
-### 4. Data Extraction
+<details>
+<summary><strong>4. Data Extraction: RagWithDataExtractionExample</strong></summary>
+
 ```
 Page Size: 20
 Interval Minutes: 60
@@ -72,8 +82,11 @@ Implementation ([`RagWithDataExtractionExample`](basic_dspy_example.py#L50-L65))
 - Extracts structured data from API response
 - Defines specific output fields with types
 - Uses `dspy.Signature` for schema definition
+</details>
 
-### 5. Time Conversion
+<details>
+<summary><strong>5. Time Conversion: reActWithRag</strong></summary>
+
 ```
 Interval in minutes: 60
 Interval in seconds: 3600
@@ -82,8 +95,11 @@ Implementation ([`reActWithRag`](basic_dspy_example.py#L68-L85))
 - Uses ReAct pattern with custom math tool
 - Combines API data with calculation
 - Demonstrates tool integration
+</details>
 
-### 6. String Analysis
+<details>
+<summary><strong>6. String Analysis: countLetterInWord</strong></summary>
+
 ```
 Word: "strawberry"
 Letter 'r' count: 3
@@ -92,18 +108,24 @@ Implementation ([`countLetterInWord`](basic_dspy_example.py#L88-L113))
 - Custom tool for letter counting
 - Uses ReAct for simple text analysis
 - Shows basic tool usage pattern
+</details>
 
-### 7. Text Summarization
+<details>
+<summary><strong>7. Text Summarization: summarizeTextExample</strong></summary>
+
 ```
 Input: Long text about DSPy framework
 Output: Concise summary of DSPy's key features
 ```
-Implementation ([`summarizeTextExample`](basic_dspy_example.py#L116-L133))
+Implementation ([`summarizeTextExample`](basic_dspy_example.py#L119-L133))
 - Uses `ChainOfThought` for text summarization
 - Processes multi-sentence input text
 - Generates concise, coherent summaries
+</details>
 
-### 8. Text Translation
+<details>
+<summary><strong>8. Text Translation: translateTextExample</strong></summary>
+
 ```
 Input: "Hello, world! DSPy is a great tool for building AI applications."
 Output: Merhaba dünya! DSPy, yapay zeka uygulamaları geliştirmek için harika bir araçtır.
@@ -112,8 +134,11 @@ Implementation ([`translateTextExample`](basic_dspy_example.py#L136-L144))
 - Translates text to specified target language
 - Uses `ChainOfThought` for accurate translation
 - Maintains context and meaning
+</details>
 
-### 9. Basic Prediction
+<details>
+<summary><strong>9. Basic Prediction: basicPredictExample</strong></summary>
+
 ```
 Question: "What is the capital of Germany?"
 Answer: "Berlin"
@@ -122,26 +147,33 @@ Implementation ([`basicPredictExample`](basic_dspy_example.py#L147-L151))
 - Simple question-answering using `dspy.Predict`
 - Direct prediction without complex reasoning
 - Demonstrates basic model usage
+</details>
 
-### 10. Multiple Choice Questions
+<details>
+<summary><strong>10. Multiple Choice Questions: multipleChoiceExample</strong></summary>
+
 ```
 Question: "Which planet is known as the Red Planet?"
 Options: A) Venus, B) Mars, C) Jupiter, D) Saturn
 ```
-Implementation ([`multipleChoiceExample`](basic_dspy_example.py#L154-L176))
+Implementation ([`multipleChoiceExample`](basic_dspy_example.py#L154-L177))
 - Custom `MultipleChoice` signature
 - Uses `dspy.MultiChainComparison` and `dspy.Predict` for robust answers
 - Provides reasoning for selected answer
+</details>
 
-### 11. Parallel Processing
+<details>
+<summary><strong>11. Parallel Processing: parallelProcessingExample</strong></summary>
+
 ```
 Input: Multiple text snippets
 Output: Category for each text
 ```
-Implementation ([`parallelProcessingExample`](basic_dspy_example.py#L179-L194))
+Implementation ([`parallelProcessingExample`](basic_dspy_example.py#L180-L195))
 - Processes multiple inputs in parallel
 - Uses `dspy.Parallel` for efficient execution
 - Demonstrates batch processing capabilities
+</details>
 
 ## DSPy Components Used
 
