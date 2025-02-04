@@ -182,7 +182,7 @@ Implementation ([`parallelProcessingExample`](basic_dspy_example.py#L181-L196))
 Input: Question about Naruto's friends
 Output: Structured JSON data with character names and clans
 ```
-Implementation ([`typedChainOfThoughtExample`](basic_dspy_example.py#L198-L213))
+Implementation ([`typedChainOfThoughtExample`](basic_dspy_example.py#L199-L219))
 - Uses `ChainOfThought` for structured reasoning
 - Processes JSON input and generates structured output
 - Demonstrates complex reasoning with JSON
@@ -196,7 +196,7 @@ Question: "What is the total years between the Roman Empire's founding and the f
 Thought Process: Step-by-step historical analysis
 Final Answer: 503
 ```
-Implementation ([`stackedLLMCallsExample`](basic_dspy_example.py#L216-L231))
+Implementation ([`stackedLLMCallsExample`](basic_dspy_example.py#L222-L243))
 - Uses multiple LLM calls to answer a complex question
 - Demonstrates the ability to integrate multiple models
 - Shows how to handle multi-step reasoning
