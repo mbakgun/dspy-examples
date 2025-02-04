@@ -1,6 +1,7 @@
 import time
 import warnings
 import requests
+from pydantic import BaseModel, Field
 
 warnings.filterwarnings(
     "ignore", category=UserWarning, module="pydantic._internal._config"
@@ -195,6 +196,53 @@ def parallelProcessingExample():
         print(f"Category: {result.category}")
 
 
+def typedChainOfThoughtExample():
+
+    class NarutoCharacter(BaseModel):
+        name: str = Field()
+        clanName: str = Field(
+            description="The name of the clan the character belongs to"
+        )
+
+    class KonohaFriends(dspy.Signature):
+        """Given a question about Naruto's friends, return a list of their names and clans"""
+
+        question: str = dspy.InputField()
+        friends: list[NarutoCharacter] = dspy.OutputField(
+            desc="List of Naruto's friends with their names and clans"
+        )
+
+    predict = dspy.ChainOfThought(KonohaFriends)
+    result = predict(question="Who were Naruto's school friends from Konoha?")
+
+    print("\nNaruto's Friends from Konoha:")
+    print([friend.model_dump() for friend in result.friends])  # Convert to JSON
+
+
+def stackedLLMCallsExample():
+    """Example of stacking multiple LLM calls in sequence"""
+
+    class DoubleChainModule(dspy.Module):
+        def __init__(self):
+            super().__init__()
+            self.cot1 = dspy.ChainOfThought("question -> step_by_step_thought")
+            self.cot2 = dspy.ChainOfThought("question, thought -> one_word_answer")
+
+        def forward(self, question):
+            thought = self.cot1(question=question).step_by_step_thought
+            answer = self.cot2(question=question, thought=thought).one_word_answer
+            return dspy.Prediction(thought=thought, answer=answer)
+
+    multi_step_question = "What is the total years between the Roman Empire's founding and the fall of Rome?"
+
+    doubleCot = DoubleChainModule()
+    output = doubleCot(question=multi_step_question)
+
+    print(f"\nQuestion: {multi_step_question}")
+    print(f"Thought Process: {output.thought}")
+    print(f"Final Answer: {output.answer}")
+
+
 if __name__ == "__main__":
     start_time = time.time()
     # getFloatAnswerExample()
@@ -208,6 +256,8 @@ if __name__ == "__main__":
     # basicPredictExample()
     # multipleChoiceExample()
     # parallelProcessingExample()
+    # typedChainOfThoughtExample()
+    # stackedLLMCallsExample()
 
     elapsed_ms = (time.time() - start_time) * 1000
     print(f"\nTotal time taken: {elapsed_ms:.2f}ms")
