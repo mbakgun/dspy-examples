@@ -247,7 +247,7 @@ Run any example using uv:
 uv run basic_dspy_example.py
 ```
 
-Example console outputs can be found in [console_logs.txt](console_logs.txt).
+Example console outputs can be found in [console_logs](console_logs.txt).
 
 Or run specific functions by uncommenting them in the main block:
 ```python
@@ -257,6 +257,8 @@ if __name__ == "__main__":
     # GetBasicAnswer()
     # ...
 ```
+
+ For a comprehensive example of DSPy in action, check out our AI writing assistant at [writebreeze.com](https://writebreeze.com). This project demonstrates real-world implementation of the concepts covered above.
 
 ## Performance Notes
 
